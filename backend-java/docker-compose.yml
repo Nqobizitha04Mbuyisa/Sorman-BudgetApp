@@ -1,0 +1,48 @@
+# =============================================================
+#  Finova Budget Tracker — local docker compose
+#  Runs PostgreSQL + the Spring Boot API together.
+#  For production, point at NeonDB and remove the `db` service.
+# =============================================================
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: finova-postgres
+    environment:
+      POSTGRES_DB: finova_db
+      POSTGRES_USER: finova_user
+      POSTGRES_PASSWORD: finova_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - finova_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U finova_user -d finova_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: finova-api
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/finova_db
+      SPRING_DATASOURCE_USERNAME: finova_user
+      SPRING_DATASOURCE_PASSWORD: finova_pass
+      JWT_SECRET: ${JWT_SECRET:-finova-local-jwt-secret-please-change-me-in-prod-2026-1234567}
+      JWT_EXPIRATION_MS: 86400000
+      ADMIN_EMAIL: admin@finova.io
+      ADMIN_PASSWORD: Admin@12345
+      CORS_ALLOWED_ORIGINS: http://localhost:3000,http://localhost:5173
+      JPA_DDL_AUTO: update
+      JPA_SHOW_SQL: "false"
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+
+volumes:
+  finova_pgdata:

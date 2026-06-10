@@ -1,0 +1,116 @@
+# =====================================================
+# Sorman Budget Tracker — Root .gitignore
+# =====================================================
+
+# --- Secrets / env ---
+.env
+.env.local
+.env.*.local
+*.env
+!.env.example
+
+# --- OS noise ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Editors / IDEs ---
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+.factorypath
+.apt_generated/
+.springBeans
+.sts4-cache/
+nbproject/private/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# --- Java / Maven / Gradle ---
+target/
+build/
+out/
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+*.zip
+!Sorman-portfolio.zip.keep
+hs_err_pid*
+.mvn/
+!.mvn/wrapper/maven-wrapper.jar
+.gradle/
+
+# --- Node / React / Yarn / Vite ---
+node_modules/
+.pnp.*
+.yarn/cache
+.yarn/unplugged
+.yarn/install-state.gz
+yarn-error.log*
+npm-debug.log*
+.next/
+.cache/
+.parcel-cache/
+storybook-static/
+
+# Production build artefacts
+frontend/build/
+frontend/dist/
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+ENV/
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.ruff_cache/
+
+# --- Logs ---
+*.log
+logs/
+supervisord.log
+supervisor*.log
+
+# --- Docker ---
+.docker/
+
+# --- Distributable artefacts produced by scripts/build-zip.sh ---
+Sorman-portfolio.zip
+
+# --- Test reports ---
+test_reports/
+backend/tests/__pycache__/
+backend/tests/.pytest_cache/
+
+# --- Misc ---
+*.bak
+*.orig
+*.tmp
+*.pid
+*.seed
+*.pid.lock
+.history/

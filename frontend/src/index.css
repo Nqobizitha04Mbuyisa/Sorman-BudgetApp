@@ -1,0 +1,157 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light theme */
+    --background: 220 14% 97%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 212 100% 35%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 14% 92%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 220 14% 92%;
+    --muted-foreground: 220 9% 40%;
+    --accent: 220 14% 92%;
+    --accent-foreground: 222 47% 11%;
+    --destructive: 0 65% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 142 100% 31%;
+    --warning: 48 96% 53%;
+    --border: 220 13% 88%;
+    --input: 220 13% 88%;
+    --ring: 212 100% 35%;
+    --radius: 0.875rem;
+
+    --chart-1: 212 100% 50%;
+    --chart-2: 142 71% 45%;
+    --chart-3: 0 84% 60%;
+    --chart-4: 38 92% 50%;
+    --chart-5: 271 91% 65%;
+  }
+
+  .dark {
+    /* Dark theme — Cinematic obsidian */
+    --background: 0 0% 2%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 4%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 5%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 212 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 10%;
+    --muted-foreground: 240 5% 65%;
+    --accent: 0 0% 10%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 4 100% 58%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 142 100% 39%;
+    --warning: 50 100% 52%;
+    --border: 0 0% 12%;
+    --input: 0 0% 12%;
+    --ring: 212 100% 50%;
+
+    --chart-1: 212 100% 60%;
+    --chart-2: 142 76% 50%;
+    --chart-3: 4 100% 65%;
+    --chart-4: 50 100% 60%;
+    --chart-5: 271 91% 70%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html, body, #root {
+    @apply h-full;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+    font-feature-settings: 'cv11', 'ss01', 'ss03';
+  }
+  h1, h2, h3, h4, h5 {
+    font-family: 'Cabinet Grotesk', 'Manrope', sans-serif;
+    letter-spacing: -0.02em;
+  }
+  .font-mono, .font-numeric {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+  }
+}
+
+/* Cinematic backdrop for auth page */
+.auth-bg {
+  background-color: #050505;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(0, 122, 255, 0.22), transparent 45%),
+    radial-gradient(circle at 80% 75%, rgba(0, 200, 83, 0.14), transparent 55%),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.03), transparent 60%);
+}
+.auth-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  pointer-events: none;
+}
+
+/* Glass card */
+.glass {
+  background: hsl(var(--card) / 0.6);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid hsl(var(--border));
+}
+.dark .glass {
+  background: rgba(10, 10, 10, 0.55);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.35), inset 0 1px 0 0 rgba(255, 255, 255, 0.04);
+}
+
+/* Soft glow pulse on KPI numbers */
+.kpi-glow {
+  text-shadow: 0 0 24px rgba(0, 122, 255, 0.22);
+}
+
+/* Neon ring focus */
+.neon-focus:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 1px hsl(var(--primary)), 0 0 18px hsl(var(--primary) / 0.35);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover { background: hsl(var(--muted-foreground) / 0.4); }
+
+/* Number tabular */
+.tabular { font-variant-numeric: tabular-nums; }
+
+/* Subtle entrance */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.fade-up { animation: fadeUp 0.5s ease-out both; }
+.fade-up-1 { animation-delay: 0.05s; }
+.fade-up-2 { animation-delay: 0.1s; }
+.fade-up-3 { animation-delay: 0.15s; }
+.fade-up-4 { animation-delay: 0.2s; }
+
+@layer base {
+  [data-debug-wrapper="true"] { display: contents !important; }
+}
