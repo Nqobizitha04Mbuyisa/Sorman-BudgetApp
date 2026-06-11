@@ -6,7 +6,7 @@ The application allows users to securely manage income and expenses, track spend
 
 ## Live Demo
 
-🔗 **Live Application:** <a href="https://sorman-budgetapp1.onrender.com" target="_blank">https://sorman-budgetapp1.onrender.com</a>
+🔗 **Live Application:** [Open Sorman-App]<a href="https://sorman-budgetapp1.onrender.com" target="_blank">https://sorman-budgetapp1.onrender.com</a>
 
 ## Technical Stack
 
